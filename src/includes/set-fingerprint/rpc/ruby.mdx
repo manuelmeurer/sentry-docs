@@ -12,7 +12,7 @@ end
 Sentry.init do |config|
   config.before_send = lambda do |event, hint|
     if hint[:exception].is_a?(RPCError)
-      event.fingerprint = ["{{default}}", exception.code, exception.function_name]
+      event.fingerprint = ["{{default}}", hint[:exception].code, hint[:exception].function_name]
     end
 
     event
